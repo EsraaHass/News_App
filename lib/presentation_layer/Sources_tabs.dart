@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/model/SoursesRespons.dart';
+import 'package:news_app/presentation_layer/newsList.dart';
 import 'package:news_app/presentation_layer/sourceTab.dart';
 
 class SourcesTabs extends StatefulWidget {
@@ -16,24 +17,27 @@ class _SourcesTabsState extends State<SourcesTabs> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: widget.sources!.length,
-        child: Column(
-          children: [
-            TabBar(
-              tabs: widget.sources!.map((source) {
-                bool isSelected =
-                    widget.sources?.indexOf(source) == currentIndex;
-                return SourceTab(source, isSelected);
-              }).toList(),
-              indicatorColor: Colors.transparent,
-              isScrollable: true,
-              onTap: (index) {
-                currentIndex = index;
-                setState(() {});
-              },
-            ),
-          ],
-        ));
+    return Expanded(
+      child: DefaultTabController(
+          length: widget.sources!.length,
+          child: Column(
+            children: [
+              TabBar(
+                tabs: widget.sources!.map((source) {
+                  bool isSelected =
+                      widget.sources?.indexOf(source) == currentIndex;
+                  return SourceTab(source, isSelected);
+                }).toList(),
+                indicatorColor: Colors.transparent,
+                isScrollable: true,
+                onTap: (index) {
+                  currentIndex = index;
+                  setState(() {});
+                },
+              ),
+              NewsList(widget.sources![currentIndex]),
+            ],
+          )),
+    );
   }
 }
