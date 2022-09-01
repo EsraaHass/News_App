@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/presentation_layer/categories/categoryModel.dart';
 import 'package:news_app/presentation_layer/news/Sources_tabs.dart';
 
 class NewsFragment extends StatelessWidget {
+  BuildCategory category;
+
+  NewsFragment(this.category);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         FutureBuilder(
-            future: ApiManager.getNewsSource(),
+            future: ApiManager.getNewsSource(category.id!),
             builder: (buildContext, snapShot) {
               if (snapShot.hasError) {
                 return Center(child: Text('${snapShot.error.toString()}'));

@@ -7,8 +7,11 @@ class MyTheme {
     primaryColor: primary,
     textTheme: const TextTheme(
       titleSmall: TextStyle(color: primary, fontSize: 18),
-      titleMedium: TextStyle(
-          color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-    ),
+        titleMedium: TextStyle(
+            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+        bodySmall: TextStyle(
+          color: Colors.white,
+          fontSize: 22,
+        )),
   );
 }
