@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/presentation_layer/categories/categories.dart';
+import 'package:news_app/presentation_layer/categories/categoryModel.dart';
 import 'package:news_app/presentation_layer/homeSideMinue.dart';
+import 'package:news_app/presentation_layer/news/newsFragment.dart';
 import 'package:news_app/presentation_layer/settings/settings.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(45))),
+          toolbarHeight: 80,
           centerTitle: true,
           title: const Text(
             'News App',
@@ -35,11 +40,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget currentWidget = CategoryFragment();
+  @override
+  void initState() {
+    super.initState();
+    currentWidget = CategoryFragment(oncategoriesButtonClick);
+  }
+
+  late Widget currentWidget;
+
+  void oncategoriesButtonClick(BuildCategory category) {
+    currentWidget = NewsFragment(category);
+    setState(() {});
+  }
 
   void onSideMenueButtonClick(int type) {
     if (type == HomeSideMinue.category) {
-      currentWidget = CategoryFragment();
+      currentWidget = CategoryFragment(oncategoriesButtonClick);
     } else if (type == HomeSideMinue.settings) {
       currentWidget = SettingsFragment();
     }
