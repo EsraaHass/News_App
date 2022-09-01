@@ -28,3 +28,4 @@ class ApiManager {
     return sourceResponse;
   }
 }
+//  google :  https://newsapi.org/docs/endpoints/everything
