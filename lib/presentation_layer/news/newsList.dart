@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/api/model/NewsResponse.dart';
 import 'package:news_app/api/model/SoursesRespons.dart';
-import 'package:news_app/presentation_layer/newsWidget.dart';
+import 'package:news_app/presentation_layer/news/newsWidget.dart';
 
 class NewsList extends StatelessWidget {
   Source source;
