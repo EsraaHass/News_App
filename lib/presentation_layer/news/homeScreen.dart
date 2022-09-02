@@ -3,6 +3,7 @@ import 'package:news_app/presentation_layer/categories/categories.dart';
 import 'package:news_app/presentation_layer/categories/categoryModel.dart';
 import 'package:news_app/presentation_layer/homeSideMinue.dart';
 import 'package:news_app/presentation_layer/news/newsFragment.dart';
+import 'package:news_app/presentation_layer/news/newsSearch.dart';
 import 'package:news_app/presentation_layer/settings/settings.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +31,16 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text(
             'News App',
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  openPageSearch();
+                },
+                icon: Icon(
+                  Icons.search,
+                  size: 30,
+                )),
+          ],
           backgroundColor: Colors.green,
         ),
         drawer: Drawer(
@@ -61,5 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     setState(() {});
     Navigator.pop(context);
+  }
+
+  void openPageSearch() {
+    showSearch(context: context, delegate: NewsSearch());
   }
 }
