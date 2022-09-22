@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/presentation_layer/categories/categoryWidget.dart';
+import 'package:news_app/views/categories/categoryWidget.dart';
 
 import 'categoryModel.dart';
 

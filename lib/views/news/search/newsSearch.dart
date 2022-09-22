@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/api_manager.dart';
-import 'package:news_app/api/model/NewsResponse.dart';
-import 'package:news_app/presentation_layer/news/newsWidget.dart';
+import 'package:news_app/model/NewsResponse.dart';
+import 'package:news_app/repository/NewsRepositpry.dart';
+import 'package:news_app/view_models/news_viewModel.dart';
+import 'package:news_app/views/news/search/newsWidget.dart';
 
 class NewsSearch extends SearchDelegate {
   @override
@@ -11,7 +12,7 @@ class NewsSearch extends SearchDelegate {
           onPressed: () {
             showResults(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.search,
             size: 30,
           )),
@@ -24,22 +25,26 @@ class NewsSearch extends SearchDelegate {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.clear,
           size: 30,
         ));
   }
 
+  NewsDetailsViewModel newsDetailsViewModel = NewsDetailsViewModel(
+    repository: NewsRepository(),
+  );
+
   @override
   Widget buildResults(BuildContext context) {
     return Container(
       child: FutureBuilder<NewsResponse>(
-        future: ApiManager.getNewsBySourceId(search: query),
+        future: newsDetailsViewModel.getNewsBySourceId(search: query),
         builder: (buildContext, snapShot) {
           if (snapShot.hasError) {
             return Center(child: Text('${snapShot.error.toString()}'));
           } else if (snapShot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -69,7 +74,7 @@ class NewsSearch extends SearchDelegate {
         style: Theme.of(context)
             .textTheme
             .titleSmall
-            ?.copyWith(color: Color(0xFF303030)),
+            ?.copyWith(color: const Color(0xFF303030)),
       ),
     );
   }

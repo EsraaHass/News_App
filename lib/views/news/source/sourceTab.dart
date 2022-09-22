@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/model/SoursesRespons.dart';
+import 'package:news_app/model/SoursesRespons.dart';
 
 class SourceTab extends StatelessWidget {
   Source source;
