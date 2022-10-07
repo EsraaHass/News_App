@@ -33,11 +33,17 @@ class NewsWidget extends StatelessWidget {
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-            Text(articles.author ?? ""),
+            Text(
+              articles.author ?? "",
+              textAlign: TextAlign.left,
+            ),
             const SizedBox(
               height: 5,
             ),
-            Text(articles.title ?? ""),
+            Text(
+              articles.title ?? "",
+              textAlign: TextAlign.left,
+            ),
             SizedBox(
               height: 5,
             ),

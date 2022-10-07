@@ -33,6 +33,7 @@ class NewsResponse {
     return map;
   }
 }
+
 class Articles {
   Articles({
     this.source,

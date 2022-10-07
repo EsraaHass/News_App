@@ -9,11 +9,13 @@ import 'package:news_app/views/constant/constant.dart';
 class NewsRepository implements Repository {
   @override
   Future<NewsResponse> getNewsBySourceId(
-      {String? search, String? sourceId}) async {
+      {String? search, String? sourceId, int? page}) async {
     var url = Uri.https(BASE_URL, '/v2/everything', {
       'apiKey': API_KEY,
       'sources': sourceId,
       'q': search,
+      'pageSize': '20',
+      'page': '$page'
     });
     var getResponse = await http.get(url);
     var responseBody = getResponse.body;

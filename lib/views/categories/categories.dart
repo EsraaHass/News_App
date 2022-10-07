@@ -8,15 +8,14 @@ class CategoryFragment extends StatelessWidget {
 
   CategoryFragment(this.onCategoryClick);
 
-  var category = BuildCategory.getAllCategoreies();
-
   @override
   Widget build(BuildContext context) {
+    var category = BuildCategory.getAllCategoreies(context);
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       color: Colors.transparent,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,

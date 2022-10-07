@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/view_models/news_viewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../settings/provider.dart';
 
 class NewsDetails extends StatefulWidget {
   static const String routeName = 'NewsDetails';
@@ -22,6 +25,8 @@ class _NewsDetailsState extends State<NewsDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
+
     var articles = ModalRoute.of(context)!.settings.arguments as Articles;
     var mediaQuery = MediaQuery.of(context).size.height;
 
@@ -33,10 +38,10 @@ class _NewsDetailsState extends State<NewsDetails> {
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(45))),
           toolbarHeight: 80,
           centerTitle: true,
-          title: const Text(
-            'News Details',
+          title: Text(
+            AppLocalizations.of(context)!.details,
           ),
-          backgroundColor: Colors.green,
+          backgroundColor: provider.isDark() ? Colors.black : Colors.green,
         ),
         body: Container(
             padding: EdgeInsets.all(10),
@@ -85,16 +90,21 @@ class _NewsDetailsState extends State<NewsDetails> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text('View Full Article',
+                      Text(AppLocalizations.of(context)!.view,
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall
                               ?.copyWith(
-                                  fontSize: 16, color: Color(0xFF42505C))),
+                                  fontSize: 16,
+                                  color: provider.isDark()
+                                      ? Color(0xFF42505C)
+                                      : Colors.green)),
                       Icon(
                         Icons.arrow_forward_ios,
                         size: 18,
-                        color: Color(0xFF303030),
+                        color: provider.isDark()
+                            ? Color(0xFF42505C)
+                            : Colors.green,
                       )
                     ],
                   ),

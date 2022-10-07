@@ -5,6 +5,7 @@ import 'package:news_app/views/drawer/homeSideMinue.dart';
 import 'package:news_app/views/news/news_details/newsFragment.dart';
 import 'package:news_app/views/news/search/newsSearch.dart';
 import 'package:news_app/views/settings/settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home screen';
@@ -28,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(45))),
           toolbarHeight: 80,
           centerTitle: true,
-          title: const Text(
-            'News App',
+          title: Text(
+            AppLocalizations.of(context)!.news,
           ),
           actions: [
             IconButton(
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 30,
                 )),
           ],
-          backgroundColor: Colors.green,
+          // backgroundColor: Colors.green,
         ),
         drawer: Drawer(
           child: HomeSideMinue(onSideMenueButtonClick),

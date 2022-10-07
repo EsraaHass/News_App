@@ -4,7 +4,7 @@ class SettingsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.greenAccent,
-    );
+     // color: Colors.greenAccent,
+        );
   }
 }

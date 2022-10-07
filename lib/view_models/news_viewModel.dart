@@ -22,9 +22,9 @@ class NewsDetailsViewModel extends ChangeNotifier {
   }
 
   Future<NewsResponse> getNewsBySourceId(
-      {String? search, String? sourceId}) async {
-    var news =
-        await repository!.getNewsBySourceId(search: search, sourceId: sourceId);
+      {String? search, String? sourceId, int? page}) async {
+    var news = await repository!
+        .getNewsBySourceId(search: search, sourceId: sourceId, page: page);
 
     return news;
   }
